@@ -40,7 +40,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let dbReady;
 function ensureDB() {
   if (!dbReady) {
-    dbReady = connectDB().then(() => seedDemoData());
+    dbReady = connectDB().then(() => seedDemoData()).catch(err => {
+      dbReady = null; // allow the next request to retry instead of staying stuck on a failed connection
+      throw err;
+    });
   }
   return dbReady;
 }
