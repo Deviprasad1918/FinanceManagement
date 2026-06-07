@@ -1,0 +1,233 @@
+{
+  "info": {
+    "name": "Ganesh Chitfund API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000/api" },
+    { "key": "token", "value": "" },
+    { "key": "memberId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}",
+        "auth": { "type": "noauth" }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const res = pm.response.json();",
+              "if (res.success && res.data && res.data.token) {",
+              "  pm.collectionVariables.set('token', res.data.token);",
+              "  console.log('Token saved:', res.data.token);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "auth": { "type": "noauth" },
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "auth": { "type": "noauth" },
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/auth/register",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"newuser\",\n  \"email\": \"newuser@example.com\",\n  \"password\": \"password123\",\n  \"name\": \"New User\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Schemes - List",
+      "request": { "method": "GET", "url": "{{baseUrl}}/schemes" }
+    },
+    {
+      "name": "Schemes - Create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/schemes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ganesh Scheme 2026\",\n  \"months\": 20,\n  \"totalMembers\": 20,\n  \"monthlyPayment\": 5000,\n  \"baseAmount\": 100000,\n  \"startDate\": \"2026-01-01\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Members - List",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const res = pm.response.json();",
+              "if (res.success && Array.isArray(res.data) && res.data.length) {",
+              "  pm.collectionVariables.set('memberId', res.data[0].id);",
+              "  console.log('memberId saved:', res.data[0].id);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": { "method": "GET", "url": "{{baseUrl}}/members" }
+    },
+    {
+      "name": "Members - Get by ID",
+      "request": { "method": "GET", "url": "{{baseUrl}}/members/{{memberId}}" }
+    },
+    {
+      "name": "Members - Create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/members",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Suresh\",\n  \"phone\": \"9876500000\",\n  \"email\": \"suresh@example.com\",\n  \"address\": \"45 Lake View Road\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Members - Update",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/members/{{memberId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"phone\": \"9999999999\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Members - Delete",
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/members/{{memberId}}" }
+    },
+    {
+      "name": "Payments - List",
+      "request": { "method": "GET", "url": "{{baseUrl}}/payments" }
+    },
+    {
+      "name": "Payments - Create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/payments",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"memberId\": \"{{memberId}}\",\n  \"month\": 1,\n  \"amount\": 5000,\n  \"paymentMode\": \"cash\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Payments - Update Amount",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/payments/REPLACE_PAYMENT_ID",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 5500\n}"
+        }
+      }
+    },
+    {
+      "name": "Payments - Delete",
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/payments/REPLACE_PAYMENT_ID" }
+    },
+    {
+      "name": "Groups - List",
+      "request": { "method": "GET", "url": "{{baseUrl}}/groups" }
+    },
+    {
+      "name": "Groups - Create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/groups",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Group A\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Groups - Delete",
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/groups/REPLACE_GROUP_ID" }
+    },
+    {
+      "name": "Loans - List",
+      "request": { "method": "GET", "url": "{{baseUrl}}/loans" }
+    },
+    {
+      "name": "Loans - Create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/loans",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"memberId\": \"{{memberId}}\",\n  \"principal\": 50000,\n  \"interestRate\": 12,\n  \"duration\": 6,\n  \"disbursalDate\": \"2026-06-01\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Loans - Update",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/loans/REPLACE_LOAN_ID",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"closed\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Loans - Delete",
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/loans/REPLACE_LOAN_ID" }
+    },
+    {
+      "name": "Reports - Summary",
+      "request": { "method": "GET", "url": "{{baseUrl}}/reports/summary" }
+    },
+    {
+      "name": "Chit - Mark Taken",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/chit/mark-taken",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"memberId\": \"{{memberId}}\",\n  \"month\": 5,\n  \"chitAmount\": 100000\n}"
+        }
+      }
+    }
+  ]
+}

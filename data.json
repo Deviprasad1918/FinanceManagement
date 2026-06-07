@@ -1,0 +1,114 @@
+{
+  "users": [
+    {
+      "id": "45e94450-6f80-4cd7-8782-5f7944f86b80",
+      "username": "admin",
+      "email": "admin@ganapathi.com",
+      "password": "$2a$10$cPdRZpB0HkKw/vjbd/g/KOq11PduKzeNCGB.2hereH4sa84t9H1/y",
+      "name": "Admin User",
+      "role": "admin",
+      "createdAt": "2026-06-06T16:57:00.314Z"
+    },
+    {
+      "id": "b1b7f215-b87e-4129-b1ce-44cfa8a2a7f3",
+      "username": "manager",
+      "email": "manager@ganapathi.com",
+      "password": "$2a$10$j2Dk5j5k.ReG5fRyEqa1pOYm0LWDgHJpc9MksgBTGlbvFPYfW3sMO",
+      "name": "Manager User",
+      "role": "manager",
+      "createdAt": "2026-06-06T16:57:00.543Z"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "132b6baa-8946-48da-953d-30d4555d364e",
+      "name": "Ganesh Scheme 2025",
+      "months": 20,
+      "totalMembers": 20,
+      "monthlyPayment": 5000,
+      "baseAmount": 100000,
+      "startDate": "2025-04-24",
+      "status": "active",
+      "createdAt": "2026-06-06T16:57:00.545Z"
+    }
+  ],
+  "members": [
+    {
+      "id": "f8ae2801-4242-4025-80b4-99192b5a36b9",
+      "schemeId": "132b6baa-8946-48da-953d-30d4555d364e",
+      "name": "Rajesh",
+      "phone": "9876543210",
+      "email": "rajesh@example.com",
+      "address": "123 Main Street",
+      "paidMonths": 20,
+      "totalPaid": 100000,
+      "taken": true,
+      "takenMonth": 3,
+      "interestPaid": 0,
+      "status": "completed",
+      "joinDate": "2025-04-24"
+    },
+    {
+      "id": "d0132f36-5108-4abd-86d8-c1a292efb49b",
+      "schemeId": "132b6baa-8946-48da-953d-30d4555d364e",
+      "name": "Priya",
+      "phone": "9876543211",
+      "email": "priya@example.com",
+      "address": "223 Main Street",
+      "paidMonths": 15,
+      "totalPaid": 75000,
+      "taken": false,
+      "takenMonth": null,
+      "interestPaid": 0,
+      "status": "active",
+      "joinDate": "2025-04-24"
+    },
+    {
+      "id": "f96699cf-8cd4-4de8-8973-721904330802",
+      "schemeId": "132b6baa-8946-48da-953d-30d4555d364e",
+      "name": "Arjun",
+      "phone": "9876543212",
+      "email": "arjun@example.com",
+      "address": "323 Main Street",
+      "paidMonths": 20,
+      "totalPaid": 101000,
+      "taken": true,
+      "takenMonth": 6,
+      "interestPaid": 1000,
+      "status": "completed",
+      "joinDate": "2025-04-24"
+    },
+    {
+      "id": "1d5df197-bc0e-47f3-993a-e8f2b1494730",
+      "schemeId": "132b6baa-8946-48da-953d-30d4555d364e",
+      "name": "Vikram",
+      "phone": "9876543213",
+      "email": "vikram@example.com",
+      "address": "423 Main Street",
+      "paidMonths": 18,
+      "totalPaid": 90000,
+      "taken": false,
+      "takenMonth": null,
+      "interestPaid": 0,
+      "status": "active",
+      "joinDate": "2025-04-24"
+    },
+    {
+      "id": "0c9a1d86-19dc-40bb-a2c2-9e0e8d4899ef",
+      "schemeId": "132b6baa-8946-48da-953d-30d4555d364e",
+      "name": "Ravi",
+      "phone": "9876543214",
+      "email": "ravi@example.com",
+      "address": "523 Main Street",
+      "paidMonths": 17,
+      "totalPaid": 85000,
+      "taken": false,
+      "takenMonth": null,
+      "interestPaid": 0,
+      "status": "active",
+      "joinDate": "2025-04-24"
+    }
+  ],
+  "payments": [],
+  "loans": []
+}

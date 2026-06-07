@@ -1,0 +1,13 @@
+MongoDB connected: ac-nu9bh3a-shard-00-02.aaftlbf.mongodb.net/ganesh_chitfund
+Seeding demo data...
+Demo data seeded successfully
+========================================
+  GANESH CHITFUND - BACKEND SERVER
+========================================
+  Server:  http://localhost:5000
+  API:     http://localhost:5000/api
+
+  Demo Credentials:
+    admin / admin123
+    manager / manager123
+========================================
